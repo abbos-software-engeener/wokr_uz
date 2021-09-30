@@ -30,12 +30,12 @@ class Carrier(models.Model):
     company_name = models.CharField(max_length=250)
     pick_up = models.DateField()
     delivery_date = models.DateField()
-    truckload_type = models.CharField(max_length=250)
+    truckload_type = models.ForeignKey(Shipper,on_delete=models.RESTRICT,related_name="type")
     phone_number = models.IntegerField(default=12)
     email = models.EmailField(default="example@gmail.com")
     from_city = models.CharField(max_length=250, default="state/city")
     to_sity = models.CharField(max_length=250, default="state/city")
-    comments = models.ForeignKey(Comment,on_delete=models.CASCADE,blank=True)
+    comments = models.ForeignKey(Comment,on_delete=models.CASCADE,blank=True,related_name="%(class)s_comments")
 
 
 class AboutUs(models.Model):
@@ -46,12 +46,12 @@ class AboutUs(models.Model):
 
 class Career(models.Model):
     posion = models.CharField(max_length=250)
-    time = models.TimeField()
+    time = models.DateTimeField()
     payment = models.FloatField()
     company = models.CharField(max_length=250)
     phone_number = models.IntegerField(default=12)
     email = EmailField(default="example@gmail.com")
-    location = models.GenericIPAddressField()
+    location = models.CharField(max_length=250)
     image = models.ImageField(upload_to='uploads/%Y/%m/%d/')
     icon = models.ImageField(upload_to='uploads/%Y/%m/%')
     description = models.TextField()
@@ -61,4 +61,4 @@ class ContactUser(models.Model):
     name = models.CharField(max_length=50)
     phone_number = models.IntegerField(default=12)
     email = models.EmailField()
-    comment = models.ForeignKey(Comment,on_delete=models.RESTRICT, blank=True, null=True)
+    comment = models.ForeignKey(Comment,on_delete=models.RESTRICT, blank=True, null=True,related_name="%(class)s_comments")

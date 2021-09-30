@@ -35,13 +35,14 @@ class AboutUsSerializer(serializers.ModelSerializer):
 
 
 class CareerSerializer(serializers.ModelSerializer):
+    type = ShipperSerializer(required=False,many=False)
     class Meta:
         model = Career
         fields = '__all__'
 
 
 class ContactUserSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer(required=True,many=False)
+    s_comments = CommentSerializer(required=False,many=False)
 
     class Meta:
         model = ContactUser
