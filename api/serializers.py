@@ -17,7 +17,7 @@ class OurServiceSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        exclude = ('updated_at', "added_at",'parent')
+        fields = ('comment',)
 
 
 class CarrierSerializer(serializers.ModelSerializer):
@@ -46,3 +46,17 @@ class ContactUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactUser
         fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
