@@ -14,18 +14,28 @@ class OurServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ('comment',)
-
-
 class CarrierSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer(required=False, many=False)
+
+    type = ShipperSerializer(required=False,many=False)
 
     class Meta:
         model = Carrier
         fields = '__all__'
+
+
+class CareerUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Career
+        fields = '__all__'
+
+
+
+class CareerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Career
+        fields = ("posion", "time", "payment")
+
+
 
 
 class AboutUsSerializer(serializers.ModelSerializer):
@@ -34,19 +44,12 @@ class AboutUsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CareerSerializer(serializers.ModelSerializer):
-    type = ShipperSerializer(required=False,many=False)
-    class Meta:
-        model = Career
-        fields = '__all__'
-
-
 class ContactUserSerializer(serializers.ModelSerializer):
-    s_comments = CommentSerializer(required=False,many=False)
 
     class Meta:
         model = ContactUser
         fields = '__all__'
+
 
 
 
